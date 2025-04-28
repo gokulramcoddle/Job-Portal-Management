@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
-import '../'
+
 function Signup(){
   const navigate = useNavigate();
     const [registerData,setRegisterData] = useState({firstname : "", lastname : "", email : "", password : ""});
