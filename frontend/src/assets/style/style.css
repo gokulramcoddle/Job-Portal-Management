@@ -9,8 +9,14 @@ body{
   margin: 0px auto;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 #login{
-  background-image: url('../images/form-background.png');
+  background-image: url('../../../public/images/form-background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -84,7 +90,7 @@ body{
 
 
 #signup{
-  background-image: url('../images/form-background.png');
+  background-image: url('../../../public/images/form-background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -152,4 +158,87 @@ body{
   font-size: 10px;
   font-weight: 550;
   color: red;
+}
+
+.nav{
+  padding:30px;
+  background-color: #4d83a3d5;
+}
+.nav-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-container h2{
+  font-size: 30px;
+  font-weight: 1000;
+  color: white;
+}
+
+ul{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.link{
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover{
+  color: black;
+  transition: ease-in-out 0.5s;
+}
+
+.nav-link button{
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(231, 2, 2);
+  border: transparent;
+  border-radius: 0.5rem;
+}
+
+.nav-link button:hover{
+  background-color: rgb(255, 2, 2);
+}
+
+
+footer{
+  background-color: #4d83a3d5;
+}
+
+.footer-con{
+  display: flex;
+  height: 80px;
+  padding: 0px 30px;
+  justify-content: space-between;
+  align-items: center;
+  color: #000000b2;
+  font-weight: 600;
+}
+
+.contact{
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  align-items: start;
+}
+
+.home{
+  flex: 1;
+}
+
+.link-ftr{
+  font-size: 20px;
+  color: #000000b2;
+}
+
+.link-ftr:hover{
+  color: black;
 }

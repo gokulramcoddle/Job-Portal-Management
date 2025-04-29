@@ -34,19 +34,15 @@ function Login(){
       }
       
       try{
-        const response = await fetch('http://localhost:2002/login', 
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, 
           {
             method : 'post',
             headers : {'Content-Type' : 'application/json'},
             body : JSON.stringify(loginData)
           });
       if(response.ok){
-        const data = await response.json();
-         localStorage.setItem('email',loginData.email);
          const token = response.headers.get('Authorization');
           localStorage.setItem('token',token);
-          localStorage.setItem('username',data.user);
-           alert('Login Successfull'); 
            navigate('/home'); 
       }
       else{
