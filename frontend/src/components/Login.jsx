@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import {useDispatch} from "react-redux"
+import {userName} from "../userSlice"
 
 function Login(){
+  const dispatch = useDispatch();
   const navigate = useNavigate();
     const [loginData,setLoginData] = useState({email : "", password : ""});
     const [error, setError] = useState({});
@@ -41,6 +44,8 @@ function Login(){
             body : JSON.stringify(loginData)
           });
       if(response.ok){
+        const data = await response.json();
+        dispatch(userName(data.username));
          const token = response.headers.get('Authorization');
           localStorage.setItem('token',token);
            navigate('/home'); 
