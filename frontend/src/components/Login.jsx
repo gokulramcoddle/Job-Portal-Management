@@ -25,7 +25,7 @@ function Login(){
         errorStack.email = "Field cannot be empty !"
       }
       else{
-            const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const mailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if(!mailRegex.test(loginData.email)){
               errorStack.email = "Invalid email !"
             }
@@ -64,12 +64,16 @@ return (
         <div id="login">
             <form onSubmit={handleSubmit}>
               <h2>LOGIN</h2>
-              <label>Email :</label>
+              <label htmlFor="email">Email :
+              <br />  
               <input type="email" name="email" onChange = {handleChange} />
+              </label>
               {error.email && <p className="error">{error.email}</p> }
               <br />
-              <label>Password :</label>
+              <label htmlFor="password">Password :
+              <br />  
               <input type="password" name="password" onChange = {handleChange} />
+              </label>
               {error.password && <p className="error">{error.password}</p> }
               <div className="login-btn form-button">
               <button type="submit">Submit</button>

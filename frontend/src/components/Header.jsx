@@ -11,11 +11,10 @@ function Header(){
         console.log(userName);
   }
    return(
-    <>
     <div className='nav'>
-        <div className='nav-container container'>
+       <div className='nav-container container'>
         <img src={ logo} alt="logo" />
-      <ul className='nav-link'>
+        <ul className='nav-link'>
         <li><Link to="/Home" className="link">HOME</Link></li>
         <li><Link to="/job" className="link">JOBS</Link></li>
         <li><Link to="/application" className="link">MY APPLICATION</Link></li>
@@ -24,7 +23,6 @@ function Header(){
       </ul>
       </div>
     </div>
-    </>
    );
 }
 

@@ -27,7 +27,7 @@ function Signup(){
       errorOn.email = "Field cannot be empty !"
      }
      else{
-      const emailFormatCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailFormatCheck = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if(!emailFormatCheck.test(registerData.email)){
        errorOn.email = "Invalid email"
       }
@@ -64,20 +64,28 @@ return (
         <div id="signup">
             <form onSubmit={handleSubmit}>
               <h2>Register</h2>
-            <label>Firstname :</label>
+              <label>Firstname :
+              <br />
               <input type="text" name="firstname" onChange = {handleChange} />
+              </label>
               {error.firstname && <p className="error">{error.firstname}</p>}
               <br />
-              <label>Lastname :</label>
+              <label>Lastname :
+              <br />
               <input type="text" name="lastname" onChange = {handleChange} />
+              </label>
               {error.lastname && <p className="error">{error.lastname}</p>}
               <br/>
-              <label>Email :</label>
+              <label>Email :
+              <br />
               <input type="email" name="email" onChange = {handleChange} />
+              </label>
               {error.email && <p className="error">{error.email}</p>}
               <br/>
-              <label>Password :</label>
+              <label>Password :
+              <br />
               <input type="password" name="password" onChange = {handleChange} />
+              </label>
               {error.password && <p className="error">{error.password}</p>}
               <div className="signup-btn form-button">
               <button type="submit">Register</button>

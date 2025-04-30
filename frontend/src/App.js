@@ -8,8 +8,7 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <>
-     <Provider store={store}>
+  <Provider store={store}>
     <BrowserRouter>
         <Routes>
           <Route element={<ProtectedRoute />}>
@@ -22,7 +21,6 @@ function App() {
         </Routes>
     </BrowserRouter>
    </Provider>
-  </>
   );
 }
 
