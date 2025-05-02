@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { store } from './redux/store.jsx';
+import { store } from './redux/store';
 import { Provider } from 'react-redux';
-import { Layout } from './components/Layout.jsx';
-import Signup from './components/Signup.jsx';
-import Login from './components/Login.jsx';
-import Job from './components/Job.jsx';
-import Apply from './components/Apply.jsx';
-import MyApplication from './components/MyApplication.jsx';
-import About from './components/About.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
-import Home from './components/Home.jsx';
+import { Layout } from './components/Layout';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Job from './components/Job';
+import Apply from './components/Apply';
+import MyApplication from './components/MyApplication';
+import About from './components/About';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './components/Home';
 
 function App() {
   return (

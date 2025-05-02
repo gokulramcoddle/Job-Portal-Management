@@ -1,24 +1,34 @@
-import { apiRequest } from "../helpers/apiRequest.js";
-import { useState } from "react";
+import { apiRequest } from "../helpers/apiRequest";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {useDispatch} from "react-redux"
-import {userName} from "../redux/userSlice.jsx"
+import {userName} from "../redux/userSlice"
+import { toast } from 'react-toastify';
+
+interface loginData {
+  email : string;
+  password : string;
+}
+interface errorResponse {
+  email?: string;
+  password?: string;
+}
 
 function Login(){
   const dispatch = useDispatch();
   const navigate = useNavigate();
-    const [loginData,setLoginData] = useState({email : "", password : ""});
-    const [error, setError] = useState({});
+    const [loginData,setLoginData] = useState<loginData>({email : "", password : ""});
+    const [error, setError] = useState<errorResponse>({});
    
-    const handleChange = (e) => {
+    const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
      const {name, value} = e.target;
       setError((pre) => ({...pre,[name] : ""}))
       setLoginData((pre) => ({...pre,[name] : value }));
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async(e : FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const errorStack = {};
+      const errorStack : errorResponse = {};
       if(!loginData.password){
         errorStack.password = "Field cannot be empty !"
       }
@@ -39,15 +49,15 @@ function Login(){
       
       try{
       const response = await apiRequest('/login', 'post', loginData);
-      const data = response.data;
+      const data = response?.data;
       dispatch(userName(data.username));
-      const token = response.headers['authorization'];
+      const token = response?.headers['authorization'];
       localStorage.setItem('token',token);
+      toast.success('Login Successfull');
       navigate('/home'); 
       }
       catch(err){
-        console.log(err.message);
-        alert('Server side error');
+        console.log(err);
       }
     }
 

@@ -1,19 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import logo from '../assets/images/jobportal-logo.png'
+import { toast } from 'react-toastify';
+
 function Header(){
-  const userName = useSelector((state) => state.username.user).toUpperCase();
+  const userName = useSelector((state : any) => state.username.user).toUpperCase();
      const navigate = useNavigate();
         function handleClick(){
-          alert('Are you sure want to Logout?');
         localStorage.removeItem('token');
         navigate('/login');
-        console.log(userName);
+        toast.success('Logout success')
   }
    return(
     <div className='nav'>
        <div className='nav-container container'>
-        <img src={ logo} alt="logo" />
+        <img src='../../public/images/footer-logo.png' alt="logo" />
         <ul className='nav-link'>
         <li><Link to="/home" className="link">HOME</Link></li>
         <li><Link to="/job" className="link">JOBS</Link></li>

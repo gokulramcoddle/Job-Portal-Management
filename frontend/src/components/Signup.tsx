@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { apiRequest } from "../helpers/apiRequest";
 import { Link, useNavigate} from "react-router-dom";
+import { toast } from "react-toastify";
+
+interface signupData{
+  firstname: string;
+  lastname:string;
+  email:string;
+  password:string;
+}
+
+interface errorData{
+  firstname?: string;
+  lastname?:string;
+  email?:string;
+  password?:string;
+}
 
 function Signup(){
   const navigate = useNavigate();
-    const [registerData,setRegisterData] = useState({firstname : "", lastname : "", email : "", password : ""});
-    const [error, setError] = useState({});
-    const handleChange = (e) => {
+    const [registerData,setRegisterData] = useState<signupData>({firstname : "", lastname : "", email : "", password : ""});
+    const [error, setError] = useState<errorData>({});
+    const handleChange = (e : ChangeEvent <HTMLInputElement> ) => {
      const {name, value} = e.target;
      setError((prev) => ({ ...prev, [name]: "" }));
      setRegisterData((pre) => ({...pre,[name] : value }));
     }
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async(e : FormEvent <HTMLFormElement>) => {
       e.preventDefault();
-      let errorOn = {};
+      let errorOn : errorData = {};
      if(!registerData.firstname.trim()){
        errorOn.firstname = "Field cannot be empty !"
      }
@@ -40,12 +55,13 @@ function Signup(){
      }
       try{
       const response = await apiRequest("/signup", "post", registerData);
-      if(!response){
+      if(response){
+        toast.success('User registered successfull')
         navigate('/login');
       }
     }
     catch(err){
-      console.log(err.message);
+      console.log(err);
     }
   }
   

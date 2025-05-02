@@ -2,7 +2,15 @@ import { useState, useEffect } from "react"
 import { apiRequest } from "../helpers/apiRequest";
 import { useNavigate } from "react-router-dom";
 function Job(){  
-  const [ job, setJob ] = useState([]) 
+ 
+  interface listJob{
+    ID: number;
+    jobtitle: string;
+    company: string;
+    location: string;
+    postedOn: string;
+  }
+  const [ job, setJob ] = useState<listJob[]>([]) 
 
 useEffect(() => { 
     jobList();
@@ -16,22 +24,22 @@ useEffect(() => {
             }
         try{
         const response = await apiRequest("/job", "get");
-        setJob(response.data);
+        setJob(response?.data);
     }
     catch(err){
-        console.error(err.message);
+        console.error(err);
     }
 }
 
 const navigate = useNavigate();
-  const handleApply = (jobID) => {
+  const handleApply = (jobID : number ) => {
     navigate(`/apply/${jobID}`)
   }
 
     return(
         <>
         <h2>Job List</h2>
-        {job.length === 0 ? (
+        {job?.length === 0 ? (
           <p>No jobs found.</p>
         ) : (
           job.map((job, index) => (

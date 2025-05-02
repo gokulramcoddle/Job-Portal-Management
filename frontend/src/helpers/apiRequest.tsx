@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const apiRequest = async (url, method, data= null) => {
+export const apiRequest = async (url : string, method : string, data :any = null) => {
   try {
     const baseURL = `${process.env.REACT_APP_API_URL}`;
     const fullURL = baseURL + url;
