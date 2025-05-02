@@ -15,7 +15,7 @@ function Header(){
        <div className='nav-container container'>
         <img src={ logo} alt="logo" />
         <ul className='nav-link'>
-        <li><Link to="/Home" className="link">HOME</Link></li>
+        <li><Link to="/home" className="link">HOME</Link></li>
         <li><Link to="/job" className="link">JOBS</Link></li>
         <li><Link to="/application" className="link">MY APPLICATION</Link></li>
         <li><Link to="/about" className="link">ABOUT</Link></li>

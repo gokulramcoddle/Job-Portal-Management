@@ -1,7 +1,8 @@
+import { apiRequest } from "../helpers/apiRequest.js";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {useDispatch} from "react-redux"
-import {userName} from "../userSlice"
+import {userName} from "../redux/userSlice.jsx"
 
 function Login(){
   const dispatch = useDispatch();
@@ -37,28 +38,18 @@ function Login(){
       }
       
       try{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, 
-          {
-            method : 'post',
-            headers : {'Content-Type' : 'application/json'},
-            body : JSON.stringify(loginData)
-          });
-      if(response.ok){
-        const data = await response.json();
-        dispatch(userName(data.username));
-         const token = response.headers.get('Authorization');
-          localStorage.setItem('token',token);
-           navigate('/home'); 
+      const response = await apiRequest('/login', 'post', loginData);
+      const data = response.data;
+      dispatch(userName(data.username));
+      const token = response.headers['authorization'];
+      localStorage.setItem('token',token);
+      navigate('/home'); 
       }
-      else{
-        alert('Login Failed Invalid Credentials');
+      catch(err){
+        console.log(err.message);
+        alert('Server side error');
       }
     }
-    catch(err){
-      console.log(err.message);
-      alert('Server side error');
-    }
-  }
 
 return (
         <div id="login">
@@ -83,5 +74,4 @@ return (
         </div>
     )
 }
-
 export default Login;

@@ -1,15 +1,14 @@
-import Header from './Header';
-import Footer from './Footer';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 function Home(){
+    const navigate = useNavigate();
     const username = useSelector((state) => state.username.user)
     return(
-        <>
-        <Header />
-        <h1 className='home'>WELCOME TO JOBHUNT, {username}</h1>
-        <Footer />
-        </>
-    )
+        <div className='home'>
+        <h1 >WELCOME TO JOBHUNT, {username}</h1>
+         <button onClick={() => navigate('/job')}>Explore jobs</button>
+        </div>   
+         )
 }
 
 export default Home;

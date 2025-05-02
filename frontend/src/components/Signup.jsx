@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiRequest } from "../helpers/apiRequest";
 import { Link, useNavigate} from "react-router-dom";
 
 function Signup(){
@@ -38,24 +39,13 @@ function Signup(){
       return ;
      }
       try{
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, 
-          {
-            method : 'post',
-            headers : {'Content-Type' : 'application/json'},
-            body : JSON.stringify(registerData)
-          }
-        );
-      if(response.ok){
-        alert('Registered Successfull Login now');
+      const response = await apiRequest("/signup", "post", registerData);
+      if(!response){
         navigate('/login');
-      }
-      else{
-        console.log('Error registeration');
       }
     }
     catch(err){
       console.log(err.message);
-      alert('Server side error');
     }
   }
   
