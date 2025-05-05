@@ -21,6 +21,7 @@ function Signup(){
   const navigate = useNavigate();
     const [registerData,setRegisterData] = useState<signupData>({firstname : "", lastname : "", email : "", password : ""});
     const [error, setError] = useState<errorData>({});
+    
     const handleChange = (e : ChangeEvent <HTMLInputElement> ) => {
      const {name, value} = e.target;
      setError((prev) => ({ ...prev, [name]: "" }));

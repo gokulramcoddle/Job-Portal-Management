@@ -8,7 +8,7 @@ function Footer(){
          <footer>
             <div className="footer-con">
                 <div className="footer-about">
-                <img src='../../public/images/footer-logo.png' alt="logo" />
+                <img src='/images/footer-logo.png' alt="logo" />
                   <p>Job Hunt is your go-to platform for finding and applying to jobs with ease.
                      Our simple and user-friendly interface allows job seekers to explore opportunities and apply instantly through our "Easy Apply" feature.
                   </p>
@@ -22,10 +22,10 @@ function Footer(){
                 </ul>
                 <ul className="social-link">
                     <h2>Follow us</h2>
-                    <li><Link className='link-ftr' to={'/linkedIN'}><FontAwesomeIcon icon={faLinkedinIn} /></Link></li>
-                    <li><Link className='link-ftr' to={'/Facebook'}><FontAwesomeIcon icon={faFacebook} /></Link></li>
-                    <li><Link className='link-ftr' to={'/Instagram'}><FontAwesomeIcon icon={faInstagram} /></Link></li>
-                    <li><Link className='link-ftr' to={'/Whatsapp'}><FontAwesomeIcon icon={faWhatsapp} /></Link></li>
+                    <li><Link className='link-ftr' to={'#'}><FontAwesomeIcon icon={faLinkedinIn} /></Link></li>
+                    <li><Link className='link-ftr' to={'#'}><FontAwesomeIcon icon={faFacebook} /></Link></li>
+                    <li><Link className='link-ftr' to={'#'}><FontAwesomeIcon icon={faInstagram} /></Link></li>
+                    <li><Link className='link-ftr' to={'#'}><FontAwesomeIcon icon={faWhatsapp} /></Link></li>
                 </ul>  
                 <ul className="contact">
                      <h2>Contact</h2>

@@ -1,10 +1,17 @@
-import { Navigate,Outlet } from 'react-router-dom';
-function ProtectedRoute(){
-    const token = localStorage.getItem('token');
-    if(!token){
-        return <Navigate to='/login'/>        
-    }
-return <Outlet/>
-}
+import { JSX } from "react";
+import { Navigate } from "react-router-dom";
 
-export default ProtectedRoute;
+export function ProtectedRoute<T extends JSX.IntrinsicAttributes>(
+    Component: React.ComponentType<T>
+  ) {
+    return function AuthWrapper(props: T) {
+      const isLoggedIn = Boolean(localStorage.getItem("token"));
+  
+      if (!isLoggedIn) {
+        return <Navigate to="/login" />;
+      }
+  
+      return <Component {...props} />;
+    };
+  }
+  
