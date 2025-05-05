@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { apiRequest } from '../helpers/apiRequest';
 
-interface listApplication{
+interface ListApplication{
+    ID : number,
     jobtitle: string;
     company: string;
     location: string;
@@ -11,7 +12,7 @@ interface listApplication{
   }
 
 function MyApplication(){
-       const [ application, setApplication ] = useState<listApplication[]>([]) 
+       const [ application, setApplication ] = useState<ListApplication[]>([]) 
      
      useEffect(() => { 
           applicationList();   
@@ -39,7 +40,7 @@ function MyApplication(){
           <p className='not-found'>No Application found.</p>
         ) : (
           application.map((a, index) => (
-            <div className="application" key={index}>
+            <div className="application" key={a.ID}>
               <h2>{a.jobtitle}</h2>
               <p>{a.company}</p>
               <p>{a.salary}</p>

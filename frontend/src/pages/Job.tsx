@@ -4,7 +4,7 @@ import { useNavigate} from "react-router-dom";
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { toast, ToastContainer } from "react-toastify";
 
-interface listJob{
+interface ListJob{
   ID: number;
   jobtitle: string;
   company: string;
@@ -15,7 +15,7 @@ interface listJob{
 
 function Job(){   
   const navigate = useNavigate();
-  const [ job, setJob ] = useState<listJob[]>([]);
+  const [ job, setJob ] = useState<ListJob[]>([]);
   const [appliedJobs, setAppliedJobs] = useState<number[]>([]);
 
 useEffect(() => { 
@@ -62,7 +62,7 @@ const handleApply = (jobID: number) => {
           <p className="not-found">No jobs found.</p>
         ) : (
           job.map((job, index) => (
-            <div className="jobBox" key={index}>
+            <div className="jobBox" key={job.ID}>
               <h2>{job.jobtitle}</h2>
               <p>{job.company}</p>
               <p>{job.location}</p>

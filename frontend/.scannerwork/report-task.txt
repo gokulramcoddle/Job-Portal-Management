@@ -1,6 +1,6 @@
-projectKey=react-frontend
+projectKey=react-tsx
 serverUrl=http://localhost:9000
 serverVersion=25.2.0.102705
-dashboardUrl=http://localhost:9000/dashboard?id=react-frontend
-ceTaskId=3eb5da89-559f-4207-8f0d-e07d4265c688
-ceTaskUrl=http://localhost:9000/api/ce/task?id=3eb5da89-559f-4207-8f0d-e07d4265c688
+dashboardUrl=http://localhost:9000/dashboard?id=react-tsx
+ceTaskId=a50f9c66-596b-4e02-9788-0a665f53d5fe
+ceTaskUrl=http://localhost:9000/api/ce/task?id=a50f9c66-596b-4e02-9788-0a665f53d5fe

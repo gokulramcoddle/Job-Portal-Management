@@ -5,7 +5,7 @@ import { apiRequest } from "../helpers/apiRequest";
 import {ProtectedRoute} from "./ProtectedRoute";
 
  
- interface apply{
+ interface ApplyValues{
         "firstname" : string,
         "lastname" : string,
         "gender" : string,
@@ -18,7 +18,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
         "about_you" : string
  }
 
- interface errorData{
+ interface ErrorData{
        "firstname"?: string,
         "lastname"?: string,
         "dob"?: string,
@@ -33,7 +33,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
  function Apply(){
     const navigate = useNavigate();
     const {id} = useParams();
-     const [Application,setApplication] = useState<apply>({
+     const [application,setApplication] = useState<ApplyValues>({
         "firstname" : "",
         "lastname" : "",
         "gender" :"male",
@@ -46,7 +46,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
         "about_you" : ""
      });
  
-     const [error, setError] = useState<errorData>({});
+     const [error, setError] = useState<ErrorData>({});
 
   const handleChange = async(e : ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
      const { name, value } = e.target;
@@ -56,37 +56,37 @@ import {ProtectedRoute} from "./ProtectedRoute";
     
   const handleSubmit = async(e : FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
     e.preventDefault();
-    let errorOn : errorData = {};
+    let errorOn : ErrorData = {};
 
-    if(!Application.firstname.trim()){
+    if(!application.firstname.trim()){
       errorOn.firstname = "Field cannot be empty !"
     }
-    if(!Application.lastname.trim()){
+    if(!application.lastname.trim()){
      errorOn.lastname = "Field cannot be empty !"
     }
-    if(!Application.dob){
+    if(!application.dob){
      errorOn.dob = "Field cannot be empty !"
     }
-    if(!Application.tenth_percentage){
+    if(!application.tenth_percentage){
         errorOn.tenth_percentage = "Field cannot be empty !" 
     }
-    else if(isNaN(Application.tenth_percentage)){
+    else if(isNaN(application.tenth_percentage)){
         errorOn.tenth_percentage = "Input is Non-Numeric !"
     }
-    if(!Application.twelth_percentage){
+    if(!application.twelth_percentage){
         errorOn.twelth_percentage = "Field cannot be empty !" 
-    }else if(isNaN(Application.twelth_percentage)){
+    }else if(isNaN(application.twelth_percentage)){
         errorOn.twelth_percentage = "Input is Non-Numeric !"
     }
-    if(!Application.university_cgpa){
+    if(!application.university_cgpa){
         errorOn.university_cgpa = "Field cannot be empty !"
-    }else if(isNaN(Application.university_cgpa)){
+    }else if(isNaN(application.university_cgpa)){
         errorOn.university_cgpa = "Input is Non-Numeric !"
     }
-    if(!Application.skills){
+    if(!application.skills){
         errorOn.skills = "Field cannot be empty !"
     }
-    if(!Application.experience){
+    if(!application.experience){
         errorOn.experience = "Field cannot be empty !"
     }
 
@@ -96,7 +96,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
     }
 
     try{
-          const response = await apiRequest(`/application/add/${id}`, "post", Application);
+          const response = await apiRequest(`/application/add/${id}`, "post", application);
           if(response){
             toast.success('Job applied successfull');
             navigate('/home');
@@ -154,7 +154,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
                       <br />
                       <label htmlFor="skills">Skills :
                       <br />
-                      <textarea name="skills" cols={30} rows={3} value={Application.skills} onChange={handleChange}></textarea>
+                      <textarea name="skills" cols={30} rows={3} value={application.skills} onChange={handleChange}></textarea>
                       </label>
                       {error.skills && <p className="error">{error.skills}</p>}
                       <br />
@@ -166,7 +166,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
                       <br />
                       <label htmlFor="about_you">About You :
                       <br />
-                      <textarea name="about_you" cols={30} rows={10} value={Application.about_you} onChange ={handleChange}></textarea>
+                      <textarea name="about_you" cols={30} rows={10} value={application.about_you} onChange ={handleChange}></textarea>
                       </label>
                       <br />
                       <div className="apply">

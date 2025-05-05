@@ -3,14 +3,14 @@ import { apiRequest } from "../helpers/apiRequest";
 import { Link, useNavigate} from "react-router-dom";
 import { toast } from "react-toastify";
 
-interface signupData{
+interface SignupData{
   firstname: string;
   lastname:string;
   email:string;
   password:string;
 }
 
-interface errorData{
+interface ErrorData{
   firstname?: string;
   lastname?:string;
   email?:string;
@@ -19,8 +19,8 @@ interface errorData{
 
 function Signup(){
   const navigate = useNavigate();
-    const [registerData,setRegisterData] = useState<signupData>({firstname : "", lastname : "", email : "", password : ""});
-    const [error, setError] = useState<errorData>({});
+    const [registerData,setRegisterData] = useState<SignupData>({firstname : "", lastname : "", email : "", password : ""});
+    const [error, setError] = useState<ErrorData>({});
     
     const handleChange = (e : ChangeEvent <HTMLInputElement> ) => {
      const {name, value} = e.target;
@@ -30,7 +30,7 @@ function Signup(){
 
     const handleSubmit = async(e : FormEvent <HTMLFormElement>) => {
       e.preventDefault();
-      let errorOn : errorData = {};
+      let errorOn : ErrorData = {};
      if(!registerData.firstname.trim()){
        errorOn.firstname = "Field cannot be empty !"
      }

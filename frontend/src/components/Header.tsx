@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 function Header(){
   const userName = useSelector((state : any) => state.username.user).toUpperCase();
@@ -35,7 +37,13 @@ function Header(){
         <li><Link to="/job" className="link">JOBS</Link></li>
         <li><Link to="/application" className="link">MY APPLICATION</Link></li>
         <li><Link to="/about" className="link">ABOUT</Link></li>
-        <li><span className='username-label'>{userName}</span> <button onClick={notifyWithAction}>LOG OUT</button></li>
+        <li className='nav-user-logout'>
+          <div className="user-label">
+          <FontAwesomeIcon icon={faUser} />
+          <span>{userName}</span>
+          </div>
+          <button onClick={notifyWithAction}>LOG OUT</button>
+        </li>
       </ul>
       </div>
     </div>

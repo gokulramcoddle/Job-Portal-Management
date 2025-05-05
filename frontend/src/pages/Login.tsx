@@ -5,11 +5,11 @@ import {useDispatch} from "react-redux"
 import {userName} from "../redux/userSlice"
 import { toast } from 'react-toastify';
 
-interface loginData {
+interface LoginData {
   email : string;
   password : string;
 }
-interface errorResponse {
+interface ErrorResponse {
   email?: string;
   password?: string;
 }
@@ -17,8 +17,8 @@ interface errorResponse {
 function Login(){
   const dispatch = useDispatch();
   const navigate = useNavigate();
-    const [loginData,setLoginData] = useState<loginData>({email : "", password : ""});
-    const [error, setError] = useState<errorResponse>({});
+    const [loginData,setLoginData] = useState<LoginData>({email : "", password : ""});
+    const [error, setError] = useState<ErrorResponse>({});
    
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
      const {name, value} = e.target;
@@ -28,7 +28,7 @@ function Login(){
 
     const handleSubmit = async(e : FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const errorStack : errorResponse = {};
+      const errorStack : ErrorResponse = {};
       if(!loginData.password){
         errorStack.password = "Field cannot be empty !"
       }
