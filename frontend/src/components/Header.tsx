@@ -10,7 +10,7 @@ function Header(){
      const notifyWithAction = () => {
       toast(
         ({ closeToast }) => (
-          <div>
+          <div className='logout-toast'>
             <p>Are you sure you want to log out?</p>
             <button
               onClick={() => {
@@ -39,7 +39,7 @@ function Header(){
         <li><Link to="/about" className="link">ABOUT</Link></li>
         <li className='nav-user-logout'>
           <div className="user-label">
-          <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faUser} className='usericon'/>
           <span>{userName}</span>
           </div>
           <button onClick={notifyWithAction}>LOG OUT</button>

@@ -35,19 +35,25 @@ function MyApplication(){
      
     return(
         <>
-        <h2>My Application</h2>
+        <h2 className='myapplication-heading'>MY APPLICATION</h2>
         {!application ? (
           <p className='not-found'>No Application found.</p>
         ) : (
-          application.map((a, index) => (
-            <div className="application" key={a.ID}>
+          <div className="application-list">
+          {application.map((a, index) => (
+            <div className="application-box" key={a.ID}>
               <h2>{a.jobtitle}</h2>
               <p>{a.company}</p>
-              <p>{a.salary}</p>
               <p>{a.location}</p>
-              <p>{a.applied_on.slice(0, 10)}</p>
+              <p>Applied On : 
+                <span>
+                  {a.applied_on.slice(0, 10)}
+                </span>
+              </p>
             </div>
           ))
+        }
+        </div>
         )}
       </>
     )
