@@ -1,17 +1,11 @@
-import { JSX } from "react";
 import { Navigate } from "react-router-dom";
 
-export function ProtectedRoute<T extends JSX.IntrinsicAttributes>(
-    Component: React.ComponentType<T>
-  ) {
-    return function AuthWrapper(props: T) {
+export function ProtectedRoute(Component: React.ComponentType) {
+    return function AuthWrapper() {
       const isLoggedIn = Boolean(localStorage.getItem("token"));
-  
       if (!isLoggedIn) {
-        return <Navigate to="/login" />;
+          return <Navigate to="/login" />;
       }
-  
-      return <Component {...props} />;
-    };
-  }
-  
+      return <Component />;
+  };
+}
