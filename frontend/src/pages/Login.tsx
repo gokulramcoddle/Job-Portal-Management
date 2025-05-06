@@ -50,7 +50,8 @@ function Login(){
       try{
       const response = await apiRequest('/login', 'post', loginData);
       if(!response){
-        toast.error('Incorrect Email or Password')
+        toast.error('Incorrect Email or Password');
+        return;
       }
       const data = response?.data;
       dispatch(userName(data.username));

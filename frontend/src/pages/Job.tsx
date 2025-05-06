@@ -29,7 +29,7 @@ useEffect(() => {
             {
                 console.log('Token not exist');
             }
-        try{
+      try{
         const response = await apiRequest("/job", "get");
         setJob(response?.data);
     }
