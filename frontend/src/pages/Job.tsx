@@ -2,7 +2,7 @@ import { useState, useEffect, ChangeEvent } from "react"
 import { apiRequest } from "../helpers/apiRequest";
 import { useNavigate} from "react-router-dom";
 import { ProtectedRoute } from '../components/ProtectedRoute';
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 interface ListJob{
   ID: number;
@@ -34,7 +34,7 @@ useEffect(() => {
         setJob(response?.data);
     }
     catch(err){
-        console.error(err);
+      toast.error(`Unable to fetch job data: ${err}`);
     }
 }
 const fetchAppliedJobs = async() => {
@@ -43,7 +43,7 @@ const fetchAppliedJobs = async() => {
     const applied = res?.data?.map((app: any) => app.jobpostID);
     setAppliedJobs(applied || []);
   } catch (err) {
-    console.error("Error fetching user applications", err);
+    toast.error(`Error fetching user applications: ${err}`);
   }
 };
 
@@ -53,7 +53,7 @@ const fetchJobByLocation = async(location: string) => {
    setJob(response?.data || []);
   }
   catch(err){
-    console.log("Error fetching job by location",err);
+    toast.error(`Error fetching job by location: ${err}`);
   }
 }
 
@@ -79,8 +79,8 @@ const handleApply = (jobID: number) => {
     return(
         <>
         <div className="job-top-portion">
-        <h2 className="job-heading">JOB LIST
-          <span> {jobLocation.toUpperCase()}</span>
+        <h2 className="job-heading">
+           JOB LIST <span>{jobLocation.toUpperCase()}</span>
         </h2>
         <select className="sort-dropdown" onChange = {handleChange}>
             <option value="">Sort by location</option>
@@ -107,7 +107,6 @@ const handleApply = (jobID: number) => {
         }
        </div> 
       )}
-        <ToastContainer />
       </>
     )
 }

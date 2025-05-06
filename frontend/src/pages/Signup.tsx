@@ -62,7 +62,7 @@ function Signup(){
       }
     }
     catch(err){
-      console.log(err);
+      toast.error(`Unable to post data: ${err}`);
     }
   }
   

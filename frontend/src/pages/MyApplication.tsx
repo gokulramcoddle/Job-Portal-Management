@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { apiRequest } from '../helpers/apiRequest';
+import { toast } from 'react-toastify';
 
 interface ListApplication{
     ID : number,
@@ -29,7 +30,7 @@ function MyApplication(){
              setApplication(response?.data);
          }
          catch(err){
-             console.error(err);
+            toast.error(`Unable to fetch data: ${err}`);
          }
      }
      
@@ -45,10 +46,8 @@ function MyApplication(){
               <h2>{a.jobtitle}</h2>
               <p>{a.company}</p>
               <p>{a.location}</p>
-              <p>Applied On : 
-                <span>
-                  {a.applied_on.slice(0, 10)}
-                </span>
+              <p>
+                 Applied On: <span>{a.applied_on.slice(0, 10)}</span>
               </p>
             </div>
           ))

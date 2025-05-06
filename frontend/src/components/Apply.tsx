@@ -102,13 +102,12 @@ import {ProtectedRoute} from "./ProtectedRoute";
     try{
           const response = await apiRequest(`/application/add/${id}`, "post", application);
           if(response){
-            window.scrollTo({ top: 0, behavior: 'smooth' });
                toast.success('Job applied successfull');
                 navigate('/home');
           }
         }
         catch(err){
-          console.log(err);
+          toast.error(`Unable to fetch data: ${err}`);
         }
  }
 
@@ -128,16 +127,19 @@ import {ProtectedRoute} from "./ProtectedRoute";
                 </label>
                   {error.lastname && <p className="error">{error.lastname}</p>}
                 <br/>
-                <label className="gender-label" htmlFor="gender">Gender :
-                <label htmlFor="male" className="gender-male-radio-btn"> Male 
-                    <input className="radio-btn" type="radio" name="gender" value="male" onChange = {handleChange} />
+                <label htmlFor="gender">Gender:</label>
+                <div className="gender-options">
+                <label htmlFor="male" className="gender-male-radio-btn">
+                  <input className="radio-btn" type="radio" name="gender" value="male" onChange={handleChange} />{' '}
+                   Male
+                 </label>
+                <label htmlFor="female">
+                  <input className="radio-btn" type="radio" name="gender" value="female" onChange={handleChange} />{' '}
+                  Female
                 </label>
-                <label htmlFor="female">Female 
-                    <input className="radio-btn"  type="radio" name="gender" value="female" onChange = {handleChange} /> 
-                </label>
-                </label>
-                {error.gender && <p className="error">{error.gender}</p>}
-                  <br/>
+                </div>
+                  {error.gender && <p className="error">{error.gender}</p>}
+                 <br />
                 <label htmlFor="dob">Date of Birth :
                   <br />
                   <input type="date" name="dob" onChange = {handleChange} max={new Date().toISOString().split("T")[0]} />

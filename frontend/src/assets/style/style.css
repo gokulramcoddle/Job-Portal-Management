@@ -470,6 +470,7 @@ footer{
 }
 
 #application-form label{
+  width: 450px;
   color: rgb(0, 0, 0);
   font-size: 15px;
   font-weight: 600;
@@ -483,10 +484,6 @@ footer{
   flex-direction: column;
   padding: 50px  100px;
   border-radius: 2rem;
-}
-
-#application-form label{
-  width: 450px;
 }
 
 #application-form h1{
@@ -510,11 +507,6 @@ footer{
   height: 10px;
   border-radius: 0.5rem;
 }
-
-.gender-male-radio-btn{
-  margin-left: 20px;
-}
-
 
 #application-form button{
   width: 70px;
@@ -543,6 +535,7 @@ footer{
   display: flex;
   justify-content: center;
   gap: 30px;
+  flex-wrap: wrap;
   flex-direction: row;
   padding: 20px;
 }
@@ -607,6 +600,7 @@ footer{
 }
 
 .about li{
+  list-style: unset;
   font-size: 15px;
   font-weight: 550;
   margin: 10px 0px 20px 50px;
@@ -617,7 +611,69 @@ footer{
   display:unset;
 }
 
-.about li{
-  list-style: unset;
+@media (max-width : 850px) {
+ 
+.nav-container img{
+  height:27px;
 }
 
+.nav-link{
+  gap: 15px;
+}
+
+.nav-link li{
+ font-size: 13px;
+}
+
+.nav-link button{
+  font-size: 10px;
+  padding: 8px;
+}
+
+.nav-user-logout{
+  gap: 10px;
+  padding: 8px 10px;
+}
+
+.user-label svg{
+  font-size: 13px;
+}
+
+.home h1{
+ font-size: 60px;
+ margin: 30px 0px;
+}
+
+.home h3{
+ font-size: 22px;
+}
+
+.home p{
+  font-size: 18px;
+  width: unset;
+  max-width: 500px;
+}
+
+.home button{
+ padding: 10px 25px;
+ font-size: 22px;
+}
+
+.footer-about p{
+  font-size: 12px;
+  max-width: 250px;
+}
+
+.footer-link{
+  gap: 10px;
+}
+
+.footer-con h2, .link-ftr{
+  font-size: 15px;
+}
+
+.quicklink-ftr, .contact li, .copyright-ftr{
+  font-size: 12px;
+}
+
+}

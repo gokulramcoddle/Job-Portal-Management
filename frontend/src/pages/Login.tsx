@@ -60,7 +60,7 @@ function Login(){
       navigate('/home'); 
       }
       catch(err){
-        console.log(err);
+        toast.error(`login server not reached : ${err}`);
       }
     }
 
