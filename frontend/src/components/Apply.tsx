@@ -55,7 +55,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
      setApplication((prev) => ({...prev,[name] : value}));       
    }  
     
-  const handleSubmit = async(e : FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
+  const handleSubmit = async(e : FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let errorOn : ErrorData = {};
 
