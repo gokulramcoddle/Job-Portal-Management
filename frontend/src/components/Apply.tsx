@@ -117,68 +117,69 @@ import {ProtectedRoute} from "./ProtectedRoute";
         <form onSubmit={handleSubmit}>
                 <label htmlFor="firstname">Firstname :
                 <br />
-                  <input type="text" name="firstname" onChange = {handleChange} />
+                  <input id="firstname" type="text" name="firstname" onChange = {handleChange} />
                 </label>
                   {error.firstname && <p className="error">{error.firstname}</p>}
                 <br />
                 <label htmlFor="lastname">Lastname :
                 <br />
-                  <input type="text" name="lastname" onChange = {handleChange} />
+                  <input id="lastname" type="text" name="lastname" onChange = {handleChange} />
                 </label>
                   {error.lastname && <p className="error">{error.lastname}</p>}
                 <br/>
-                <label htmlFor="gender">Gender:</label>
+                <label htmlFor="gender">Gender:
                 <div className="gender-options">
                 <label htmlFor="male" className="gender-male-radio-btn">
-                  <input className="radio-btn" type="radio" name="gender" value="male" onChange={handleChange} />{' '}
+                  <input id="male" className="radio-btn" type="radio" name="gender" value="male" onChange={handleChange} />{' '}
                    Male
                  </label>
                 <label htmlFor="female">
-                  <input className="radio-btn" type="radio" name="gender" value="female" onChange={handleChange} />{' '}
+                  <input id="female" className="radio-btn" type="radio" name="gender" value="female" onChange={handleChange} />{' '}
                   Female
                 </label>
                 </div>
+                </label>
                   {error.gender && <p className="error">{error.gender}</p>}
                  <br />
                 <label htmlFor="dob">Date of Birth :
                   <br />
-                  <input type="date" name="dob" onChange = {handleChange} max={new Date().toISOString().split("T")[0]} />
+                  <input id="dob" type="date" name="dob" onChange = {handleChange} max={new Date().toISOString().split("T")[0]} />
                 </label>
                   {error.dob && <p className="error">{error.dob}</p>}
                   <br />
                 <label htmlFor="tenth_percentage">10th Percentage :
                   <br />
-                  <input type="text" name="tenth_percentage" onChange = {handleChange} />
+                  <input id="tenth_percentage" type="text" name="tenth_percentage" onChange = {handleChange} />
                 </label>
                   {error.tenth_percentage && <p className="error">{error.tenth_percentage}</p>}
                   <br />
                 <label htmlFor="twelth_percentage">12th Percentage :
                   <br />
-                  <input type="text" name="twelth_percentage" onChange = {handleChange} />
+                  <input id="twelth_percentage" type="text" name="twelth_percentage" onChange = {handleChange} />
                 </label>
                   {error.twelth_percentage && <p className="error">{error.twelth_percentage}</p>}
                   <br />
                 <label htmlFor="university_cgpa">University CGPA :
                   <br />
-                  <input type="text" name="university_cgpa" onChange = {handleChange} />
+                  <input id="university_cgpa" type="text" name="university_cgpa" onChange = {handleChange} />
                 </label>
                   {error.university_cgpa && <p className="error">{error.university_cgpa}</p>}
                   <br />
                 <label htmlFor="skills">Skills :
                   <br />
-                  <textarea name="skills" cols={40} rows={3} value={application.skills} onChange={handleChange}></textarea>
+                  <textarea id="skills" name="skills" cols={40} rows={3} value={application.skills} onChange={handleChange}></textarea>
                 </label>
                   {error.skills && <p className="error">{error.skills}</p>}
                   <br />
                 <label htmlFor="experience">Experience :
                   <br />
-                  <input type="number" min={0} name="experience" onChange = {handleChange} />
+                  <input id="experience" type="number" min={0} name="experience" onChange = {handleChange} />
                 </label>
                    {error.experience && <p className="error">{error.experience}</p>}
                     <br />
                 <label htmlFor="about_you">About You :
                     <br />
-                    <textarea name="about_you" cols={50} rows={10} value={application.about_you} onChange ={handleChange}></textarea>
+                    <textarea id="about_you" name="about_you" cols={50} rows={10} value={application.about_you} onChange ={handleChange}></textarea>
                 </label>
                     <br />
                 <div className="apply">

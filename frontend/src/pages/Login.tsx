@@ -71,13 +71,13 @@ return (
               <h2>LOGIN</h2>
               <label htmlFor="email">Email :
               <br />  
-              <input type="email" name="email" onChange = {handleChange} />
+              <input id="email" type="email" name="email" onChange = {handleChange} />
               </label>
               {error.email && <p className="error">{error.email}</p> }
               <br />
               <label htmlFor="password">Password :
               <br />  
-              <input type="password" name="password" onChange = {handleChange} />
+              <input id="password" type="password" name="password" onChange = {handleChange} />
               </label>
               {error.password && <p className="error">{error.password}</p> }
               <div className="login-btn form-button">
