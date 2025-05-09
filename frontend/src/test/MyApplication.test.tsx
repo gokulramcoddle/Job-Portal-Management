@@ -19,7 +19,7 @@ jest.mock("../helpers/apiRequest", () => ({
 
 jest.mock("react-toastify", () => ({
   toast: {
-    error: jest.fn(),
+    warn: jest.fn()
   },
 }));
 
@@ -73,7 +73,7 @@ describe("MyApplication Component", () => {
     );
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith("Unable to fetch data: Error: Network Error");
+      expect(toast.warn).toHaveBeenCalledWith("Network Error");
     });
   });
 });

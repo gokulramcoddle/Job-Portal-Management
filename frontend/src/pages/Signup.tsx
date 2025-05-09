@@ -29,8 +29,8 @@ function Signup(){
     }
 
     const handleSubmit = async(e : FormEvent <HTMLFormElement>) => {
-      e.preventDefault();
-      let errorOn : ErrorData = {};
+    e.preventDefault();
+    let errorOn : ErrorData = {};
      if(!registerData.firstname.trim()){
        errorOn.firstname = "Field cannot be empty !"
      }
@@ -55,16 +55,12 @@ function Signup(){
       return ;
      }
       try{
-      const response = await apiRequest("/signup", "post", registerData);
-      if(!response){
-        toast.warn('Email already in use')
-        return;
-      }
+      await apiRequest("/signup", "post", registerData);
       toast.success('User registered successfull')
       navigate('/login');
     }
-    catch(err){
-      toast.error(`Unable to post data: ${err}`);
+    catch(error : any){
+      toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
     }
   }
   

@@ -17,22 +17,21 @@ export function MyApplication() {
   const navigate = useNavigate();
   const [application, setApplication] = useState<ListApplication[]>([]);
 
-  useEffect(() => {
-    applicationList();
-  }, []);
-
+useEffect(() => {
   const applicationList = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      return navigate('/login');
+        return navigate('/login');
     }
     try {
       const response = await apiRequest("/application/user", "get");
       setApplication(response?.data);
-    } catch (err) {
-      toast.error(`Unable to fetch data: ${err}`);
+    } catch (error : any) {
+      toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
     }
-  };
+  }
+  applicationList();
+}, [navigate]);
 
   return (
     <>
@@ -53,6 +52,6 @@ export function MyApplication() {
       )}
     </>
   );
-}
+} 
 
 export default ProtectedRoute(MyApplication);

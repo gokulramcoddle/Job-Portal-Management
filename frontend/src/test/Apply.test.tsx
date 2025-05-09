@@ -15,7 +15,7 @@ jest.mock("../components/ProtectedRoute", () => ({
 jest.mock("react-toastify", () => ({
   toast: {
     success: jest.fn(),
-    error: jest.fn(),
+    warn: jest.fn(),
   },
 }));
 
@@ -97,7 +97,7 @@ describe("Apply Component", () => {
 
     await waitFor(() => {
       expect(apiRequest).toHaveBeenCalledTimes(1);
-      expect(toast.error).toHaveBeenCalledWith("Unable to fetch data: Error: Network error");
+      expect(toast.warn).toHaveBeenCalledWith("Network error");
     });
   });
 });

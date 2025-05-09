@@ -18,11 +18,6 @@ function Job(){
   const [appliedJobs, setAppliedJobs] = useState<number[]>([]);
   const [jobLocation, setJobLocation] = useState<string>("");
 
-useEffect(() => { 
-     jobList(); 
-     fetchAppliedJobs();  
-  },[])
-
      const jobList = async() =>{
         const token = localStorage.getItem('token');
         if(!token)
@@ -33,8 +28,8 @@ useEffect(() => {
         const response = await apiRequest("/job", "get");
         setJob(response?.data);
     }
-    catch(err){
-      toast.error(`Unable to fetch job data: ${err}`);
+    catch(error : any){
+      toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
     }
 }
 const fetchAppliedJobs = async() => {
@@ -42,8 +37,8 @@ const fetchAppliedJobs = async() => {
     const res = await apiRequest("/application/user", "get");
     const applied = res?.data?.map((app: any) => app.jobpostID);
     setAppliedJobs(applied || []);
-  } catch (err) {
-    toast.error(`Error fetching user applications: ${err}`);
+  } catch (error : any) {
+    toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
   }
 };
 
@@ -52,10 +47,16 @@ const fetchJobByLocation = async(location: string) => {
    const response = await apiRequest("/job/location","post",{location});
    setJob(response?.data || []);
   }
-  catch(err){
-    toast.error(`Error fetching job by location: ${err}`);
-  }
+  catch(error : any){
+    toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
+    }
 }
+
+useEffect(() => { 
+  jobList(); 
+  fetchAppliedJobs();  
+},[])
+
 
 const handleChange = async(e : ChangeEvent<HTMLSelectElement>) => {
   const {value} = e.target;

@@ -49,10 +49,6 @@ function Login(){
       
       try{
       const response = await apiRequest('/login', 'post', loginData);
-      if(!response){
-        toast.error('Incorrect Email or Password');
-        return;
-      }
       const data = response?.data;
       dispatch(userName(data.username));
       const token = response?.headers['authorization'];
@@ -60,10 +56,10 @@ function Login(){
       toast.success('Login Successfull');
       navigate('/home'); 
       }
-      catch(err){
-        toast.error(`login server not reached : ${err}`);
-      }
+      catch (error : any) {
+        toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
     }
+  }
 
 return (
         <div id="login">

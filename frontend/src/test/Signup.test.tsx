@@ -11,7 +11,7 @@ jest.mock("../helpers/apiRequest", () => ({
 jest.mock("react-toastify", () => ({
   toast: {
     success: jest.fn(),
-    error: jest.fn(),
+    warn: jest.fn(),
   },
 }));
 
@@ -19,7 +19,6 @@ describe("Signup Component", () => {
   beforeEach(() => {
     (apiRequest as jest.Mock).mockClear();
     (toast.success as jest.Mock).mockClear();
-    (toast.error as jest.Mock).mockClear();
   });
 
   test("renders the signup form", () => {
@@ -103,7 +102,7 @@ describe("Signup Component", () => {
 
     await waitFor(() => {
       expect(apiRequest).toHaveBeenCalledTimes(1);
-      expect(toast.error).toHaveBeenCalledWith("Unable to post data: Error: Network error");
+      expect(toast.warn).toHaveBeenCalledWith("Network error");
     });
   });
 });

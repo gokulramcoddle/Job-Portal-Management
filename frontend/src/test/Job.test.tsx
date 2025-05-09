@@ -11,7 +11,6 @@ jest.mock("../helpers/apiRequest", () => ({
 jest.mock("react-toastify", () => ({
   toast: {
     warn: jest.fn(),
-    error: jest.fn(),
   },
 }));
 
@@ -139,7 +138,7 @@ describe("Job Component", () => {
     );
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith("Unable to fetch job data: Error: Failed");
+      expect(toast.warn).toHaveBeenCalledWith("Failed");
     });
   });
 });

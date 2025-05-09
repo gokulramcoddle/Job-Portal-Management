@@ -106,8 +106,8 @@ import {ProtectedRoute} from "./ProtectedRoute";
                 navigate('/home');
           }
         }
-        catch(err){
-          toast.error(`Unable to fetch data: ${err}`);
+        catch(error : any){
+          toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
         }
  }
 

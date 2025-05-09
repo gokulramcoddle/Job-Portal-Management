@@ -13,7 +13,7 @@ jest.mock("../helpers/apiRequest", () => ({
 jest.mock("react-toastify", () => ({
   toast: {
     success: jest.fn(),
-    error: jest.fn(),
+    warn: jest.fn(),
   },
 }));
 
@@ -29,7 +29,6 @@ describe("Login Component", () => {
     (useDispatch as unknown as jest.Mock).mockReturnValue(dispatchMock);
     (apiRequest as jest.Mock).mockClear();
     (toast.success as jest.Mock).mockClear();
-    (toast.error as jest.Mock).mockClear();
     
     // Mock localStorage.setItem
     jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {});
@@ -121,7 +120,7 @@ describe("Login Component", () => {
 
     await waitFor(() => {
       expect(apiRequest).toHaveBeenCalledTimes(1);
-      expect(toast.error).toHaveBeenCalledWith("login server not reached : Error: Network error");
-    });
+      expect(toast.warn).toHaveBeenCalledWith("Network error");
+     });
   });
 });
