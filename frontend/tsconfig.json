@@ -1,25 +1,27 @@
 {
   "compilerOptions": {
-    "target": "ES6",                                // Set the ECMAScript version
-    "lib": ["dom", "dom.iterable", "esnext"],       // Include the necessary libraries
-    "allowJs": true,                                // Allow JavaScript files to be compiled
-    "skipLibCheck": true,                           // Skip type checking of declaration files
-    "esModuleInterop": true,                        // Enable compatibility for CommonJS and ES modules
-    "strict": true,                                 // Enable all strict type-checking options
-    "forceConsistentCasingInFileNames": true,       // Ensure consistent casing of filenames
-    "module": "ESNext",                             // Set module system to ESNext (for modern bundlers)
-    "moduleResolution": "node",                     // Use Node.js module resolution strategy
-    "resolveJsonModule": true,                      // Allow importing JSON files
-    "isolatedModules": true,                        // Ensure all files can be safely transpiled independently
-    "noEmit": true,                                 // Don't output files, only type-checking
-    "jsx": "react-jsx"                              // Set JSX syntax support (for React 17+)
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["jest", "react", "node"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
   "include": [
-    "src/**/*"                                      // Include all files inside the 'src' folder
+    "src/**/*",
+    "src/setupTests.ts"
   ],
   "exclude": [
-    "node_modules",                                 // Exclude the 'node_modules' folder
-    "build",                                        // Exclude build folder (if applicable)
-    "dist"                                          // Exclude dist folder (if applicable)
+    "node_modules",
+    "build",
+    "dist"
   ]
 }

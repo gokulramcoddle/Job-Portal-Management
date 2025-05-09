@@ -6,7 +6,7 @@ function Home(){
     return(
         <div className='home'>
         <h1 >WELCOME TO <span>JOB</span>HUNT</h1>
-        <p>Explore thousands of job opportunities from top companies.
+        <p>Explore job opportunities from top companies.
            Apply easily, track your applications, and land your dream job with JobHunt.
         </p>
         <h3>

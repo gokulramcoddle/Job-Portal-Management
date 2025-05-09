@@ -56,13 +56,15 @@ function Signup(){
      }
       try{
       const response = await apiRequest("/signup", "post", registerData);
-      if(response){
-        toast.success('User registered successfull')
-        navigate('/login');
+      if(!response){
+        toast.warn('Email already in use')
+        return;
       }
+      toast.success('User registered successfull')
+      navigate('/login');
     }
     catch(err){
-      console.log(err);
+      toast.error(`Unable to post data: ${err}`);
     }
   }
   
