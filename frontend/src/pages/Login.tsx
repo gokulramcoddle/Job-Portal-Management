@@ -49,9 +49,6 @@ function Login(){
       
       try{
       const response = await apiRequest('/login', 'post', loginData);
-      if(!response){
-        toast.error('Incorrect Email or Password')
-      }
       const data = response?.data;
       dispatch(userName(data.username));
       const token = response?.headers['authorization'];
@@ -59,10 +56,10 @@ function Login(){
       toast.success('Login Successfull');
       navigate('/home'); 
       }
-      catch(err){
-        console.log(err);
-      }
+      catch (error : any) {
+        toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
     }
+  }
 
 return (
         <div id="login">
@@ -70,13 +67,13 @@ return (
               <h2>LOGIN</h2>
               <label htmlFor="email">Email :
               <br />  
-              <input type="email" name="email" onChange = {handleChange} />
+              <input id="email" type="email" name="email" onChange = {handleChange} />
               </label>
               {error.email && <p className="error">{error.email}</p> }
               <br />
               <label htmlFor="password">Password :
               <br />  
-              <input type="password" name="password" onChange = {handleChange} />
+              <input id="password" type="password" name="password" onChange = {handleChange} />
               </label>
               {error.password && <p className="error">{error.password}</p> }
               <div className="login-btn form-button">

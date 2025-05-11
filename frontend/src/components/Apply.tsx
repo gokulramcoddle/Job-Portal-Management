@@ -22,6 +22,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
        "firstname"?: string,
         "lastname"?: string,
         "dob"?: string,
+        "gender"?:string,
         "tenth_percentage"?: string,
         "twelth_percentage"?: string ,
         "university_cgpa"?: string,
@@ -36,7 +37,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
      const [application,setApplication] = useState<ApplyValues>({
         "firstname" : "",
         "lastname" : "",
-        "gender" :"male",
+        "gender" :"",
         "dob": "",
         "tenth_percentage" : 0,
         "twelth_percentage" : 0,
@@ -54,7 +55,7 @@ import {ProtectedRoute} from "./ProtectedRoute";
      setApplication((prev) => ({...prev,[name] : value}));       
    }  
     
-  const handleSubmit = async(e : FormEvent<HTMLFormElement | HTMLTextAreaElement>) => {
+  const handleSubmit = async(e : FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let errorOn : ErrorData = {};
 
@@ -63,6 +64,9 @@ import {ProtectedRoute} from "./ProtectedRoute";
     }
     if(!application.lastname.trim()){
      errorOn.lastname = "Field cannot be empty !"
+    }
+    if(!application.gender){
+     errorOn.gender = "Field cannot be empty !"
     }
     if(!application.dob){
      errorOn.dob = "Field cannot be empty !"
@@ -98,82 +102,91 @@ import {ProtectedRoute} from "./ProtectedRoute";
     try{
           const response = await apiRequest(`/application/add/${id}`, "post", application);
           if(response){
-            toast.success('Job applied successfull');
-            navigate('/home');
+               toast.success('Job applied successfull');
+                navigate('/home');
           }
         }
-        catch(err){
-          console.log(err);
+        catch(error : any){
+          toast.warn(error.response?.data?.message || `${error.message}` || "Unknown error");
         }
  }
 
     return(
-        <div id="application-form">
+    <div id="application-form">
+         <h1>APPLICATION FORM</h1>
         <form onSubmit={handleSubmit}>
-                      <h2>Application Form :</h2>
-                      <label htmlFor="firstname">Firstname :
-                      <br />
-                      <input type="text" name="firstname" onChange = {handleChange} />
-                      </label>
-                      {error.firstname && <p className="error">{error.firstname}</p>}
-                      <br />
-                      <label htmlFor="lastname">Lastname :
-                      <br />
-                      <input type="text" name="lastname" onChange = {handleChange} />
-                      </label>
-                      {error.lastname && <p className="error">{error.lastname}</p>}
-                      <br/>
-                      <label htmlFor="gender">Gender :
-                      <br />
-                      <label htmlFor="male">Male <input type="radio" name="gender" value="male" onChange = {handleChange} /> </label>
-                      <label htmlFor="female">Female </label><input type="radio" name="gender" value="female" onChange = {handleChange} /> </label>
-                      <br/>
-                      <label htmlFor="dob">Date of Birth :
-                      <br />
-                      <input type="date" name="dob" onChange = {handleChange} max={new Date().toISOString().split("T")[0]} />
-                      </label>
-                      {error.dob && <p className="error">{error.dob}</p>}
-                      <br />
-                      <label htmlFor="tenth_percentage">10th Percentage :
-                      <br />
-                      <input type="text" name="tenth_percentage" onChange = {handleChange} />
-                      </label>
-                      {error.tenth_percentage && <p className="error">{error.tenth_percentage}</p>}
-                      <br />
-                      <label htmlFor="twelth_percentage">12th Percentage :
-                      <br />
-                      <input type="text" name="twelth_percentage" onChange = {handleChange} />
-                      </label>
-                      {error.twelth_percentage && <p className="error">{error.twelth_percentage}</p>}
-                      <br />
-                      <label htmlFor="university_cgpa">University CGPA :
-                      <br />
-                      <input type="text" name="university_cgpa" onChange = {handleChange} />
-                      </label>
-                      {error.university_cgpa && <p className="error">{error.university_cgpa}</p>}
-                      <br />
-                      <label htmlFor="skills">Skills :
-                      <br />
-                      <textarea name="skills" cols={30} rows={3} value={application.skills} onChange={handleChange}></textarea>
-                      </label>
-                      {error.skills && <p className="error">{error.skills}</p>}
-                      <br />
-                      <label htmlFor="experience">Experience :
-                      <br />
-                      <input type="number" min={0} name="experience" onChange = {handleChange} />
-                      </label>
-                      {error.experience && <p className="error">{error.experience}</p>}
-                      <br />
-                      <label htmlFor="about_you">About You :
-                      <br />
-                      <textarea name="about_you" cols={30} rows={10} value={application.about_you} onChange ={handleChange}></textarea>
-                      </label>
-                      <br />
-                      <div className="apply">
-                      <button type="submit">Apply</button>
-                      </div>
-                   </form>
+                <label htmlFor="firstname">Firstname :
+                <br />
+                  <input id="firstname" type="text" name="firstname" onChange = {handleChange} />
+                </label>
+                  {error.firstname && <p className="error">{error.firstname}</p>}
+                <br />
+                <label htmlFor="lastname">Lastname :
+                <br />
+                  <input id="lastname" type="text" name="lastname" onChange = {handleChange} />
+                </label>
+                  {error.lastname && <p className="error">{error.lastname}</p>}
+                <br/>
+                <label htmlFor="gender">Gender:
+                <div className="gender-options">
+                <label htmlFor="male" className="gender-male-radio-btn">
+                  <input id="male" className="radio-btn" type="radio" name="gender" value="male" onChange={handleChange} />{' '}
+                   Male
+                 </label>
+                <label htmlFor="female">
+                  <input id="female" className="radio-btn" type="radio" name="gender" value="female" onChange={handleChange} />{' '}
+                  Female
+                </label>
                 </div>
+                </label>
+                  {error.gender && <p className="error">{error.gender}</p>}
+                 <br />
+                <label htmlFor="dob">Date of Birth :
+                  <br />
+                  <input id="dob" type="date" name="dob" onChange = {handleChange} max={new Date().toISOString().split("T")[0]} />
+                </label>
+                  {error.dob && <p className="error">{error.dob}</p>}
+                  <br />
+                <label htmlFor="tenth_percentage">10th Percentage :
+                  <br />
+                  <input id="tenth_percentage" type="text" name="tenth_percentage" onChange = {handleChange} />
+                </label>
+                  {error.tenth_percentage && <p className="error">{error.tenth_percentage}</p>}
+                  <br />
+                <label htmlFor="twelth_percentage">12th Percentage :
+                  <br />
+                  <input id="twelth_percentage" type="text" name="twelth_percentage" onChange = {handleChange} />
+                </label>
+                  {error.twelth_percentage && <p className="error">{error.twelth_percentage}</p>}
+                  <br />
+                <label htmlFor="university_cgpa">University CGPA :
+                  <br />
+                  <input id="university_cgpa" type="text" name="university_cgpa" onChange = {handleChange} />
+                </label>
+                  {error.university_cgpa && <p className="error">{error.university_cgpa}</p>}
+                  <br />
+                <label htmlFor="skills">Skills :
+                  <br />
+                  <textarea id="skills" name="skills" cols={40} rows={3} value={application.skills} onChange={handleChange}></textarea>
+                </label>
+                  {error.skills && <p className="error">{error.skills}</p>}
+                  <br />
+                <label htmlFor="experience">Experience :
+                  <br />
+                  <input id="experience" type="number" min={0} name="experience" onChange = {handleChange} />
+                </label>
+                   {error.experience && <p className="error">{error.experience}</p>}
+                    <br />
+                <label htmlFor="about_you">About You :
+                    <br />
+                    <textarea id="about_you" name="about_you" cols={50} rows={10} value={application.about_you} onChange ={handleChange}></textarea>
+                </label>
+                    <br />
+                <div className="apply">
+                      <button type="submit">Apply</button>
+                </div>
+         </form>
+    </div>
     );
  }
 

@@ -16,10 +16,8 @@ export const apiRequest = async (url : string, method : string, data :any = null
 
     if (response) {
       return response;
-    } else {
-      console.log("No response received");
     }
-  } catch (error) {
-    console.error(error);
+  } catch (error : any) {
+    throw error;
   }
 };

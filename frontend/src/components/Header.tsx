@@ -1,16 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 function Header(){
   const userName = useSelector((state : any) => state.username.user).toUpperCase();
      const navigate = useNavigate();
+     const [menuOpen,setMenuOpen] = useState(false);
      const notifyWithAction = () => {
       toast(
         ({ closeToast }) => (
-          <div>
+          <div className='logout-toast'>
             <p>Are you sure you want to log out?</p>
             <button
               onClick={() => {
@@ -32,14 +34,19 @@ function Header(){
     <div className='nav'>
        <div className='nav-container container'>
         <img src="/images/header-logo.png" alt="logo" />
-        <ul className='nav-link'>
-        <li><Link to="/home" className="link">HOME</Link></li>
-        <li><Link to="/job" className="link">JOBS</Link></li>
-        <li><Link to="/application" className="link">MY APPLICATION</Link></li>
-        <li><Link to="/about" className="link">ABOUT</Link></li>
+        {!menuOpen && ( 
+          <FontAwesomeIcon className='menu-bar' 
+          icon={faBars} onClick={() => setMenuOpen(true)} /> 
+        )}
+        <ul className={`nav-link ${menuOpen ? "show" : "hide"}`}>
+        <FontAwesomeIcon className= "menu-x" icon={faXmark} onClick={() => setMenuOpen(false)} />
+        <li><Link to="/home" className="link"  onClick={() => setMenuOpen(false)}>HOME</Link></li>
+        <li><Link to="/job" className="link"  onClick={() => setMenuOpen(false)}>JOBS</Link></li>
+        <li><Link to="/application" className="link"  onClick={() => setMenuOpen(false)}>MY APPLICATION</Link></li>
+        <li><Link to="/about" className="link"  onClick={() => setMenuOpen(false)}>ABOUT</Link></li>
         <li className='nav-user-logout'>
           <div className="user-label">
-          <FontAwesomeIcon icon={faUser} />
+            <FontAwesomeIcon icon={faUser} className='usericon'/>
           <span>{userName}</span>
           </div>
           <button onClick={notifyWithAction}>LOG OUT</button>
