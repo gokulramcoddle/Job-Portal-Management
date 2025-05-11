@@ -7,6 +7,7 @@
 body{
   font-family: sans-serif;
   margin: 0px auto;
+  
 }
 
 #root {
@@ -182,6 +183,9 @@ body{
   height: 40px;
 }
 
+.menu-bar, .menu-x{
+  display: none;
+}
 ul{
   display: flex;
   flex-direction: row;
@@ -674,6 +678,123 @@ footer{
 
 .quicklink-ftr, .contact li, .copyright-ftr{
   font-size: 12px;
+}
+
+}
+
+@media (max-width: 700px){
+
+.menu-bar, .menu-x{
+  display: unset;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.nav-link.show{
+  transform: translateX(0);
+  transition: 0.3s ease-in-out;
+}
+
+.nav-link{
+  flex-direction: column;
+  position: fixed;
+  justify-content: space-evenly;
+  align-items: center;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: 0.3s ease-in-out;
+  background-color: #5ac1fd;
+  padding:  60px 30px;
+}
+
+.nav-link li{
+  padding: 15px 20px;
+}
+
+.menu-x{
+  position: relative;
+  top: -30px;
+  right: 55px;
+  font-size: 25px;
+}
+
+.nav-user-logout{
+  flex-direction: column;
+  background-color: #ffffff;
+  gap: 15px;
+}
+
+.user-label{
+  gap: 5px;
+}
+
+.footer-con{
+ flex-direction: column;
+ height: unset;
+ gap: 30px;
+}
+
+.footer-con h2{
+  padding: 0px 10px 0px 0px;
+}
+
+.footer-about, .footer-about p{
+  max-width: unset;
+}
+
+.footer-link {
+  display: none;
+}
+
+.social-link{
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+}
+
+@media (max-width: 470px){
+ 
+#login form, #signup form{
+ padding: 30px;
+}
+
+.home h1{
+ font-size: 45px;
+}
+
+.home p, .home h3, .home button{
+  font-size: 18px;
+}
+
+.job-list{
+ grid-template-columns: unset;
+}
+
+.job-box, .application-box{
+  width: 250px;
+}
+
+.job-box h2, .application-box h2{
+  font-size: 17px;
+}
+
+.job-box p, .application-box p{
+  font-size: 15px;
+}
+
+.job-heading, .myapplication-heading, .about h1{
+  font-size: 28px;
+}
+
+.about h2{
+ font-size: 20px;
+}
+
+.about p{
+  font-size: 16px;
 }
 
 }
