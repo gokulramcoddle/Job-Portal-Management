@@ -761,6 +761,10 @@ footer{
  padding: 30px;
 }
 
+#login, #signup{
+  height: 100dvh;
+}
+
 .home h1{
  font-size: 45px;
 }
